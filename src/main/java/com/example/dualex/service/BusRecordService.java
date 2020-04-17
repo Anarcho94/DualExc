@@ -15,10 +15,10 @@ import static com.example.dualex.util.BusCompany.POSH;
 
 public class BusRecordService {
 
-    public void makeBusSchedule(String inputPath, String outputPath) throws IOException {
+    public void makeBusSchedule(String inputPath) throws IOException {
         List<BusRecord> commonSchedule = makeSchedule(inputPath);
         chooseEffective(commonSchedule);
-        writeInFile(commonSchedule, outputPath);
+        writeInFile(commonSchedule);
     }
 
 
@@ -61,12 +61,12 @@ public class BusRecordService {
                 && record1.getArrivalToDestination().isBefore(record2.getArrivalToDestination()));
     }
 
-    private void writeInFile(List<BusRecord> commonSchedule, String outputPath) throws IOException {
+    private void writeInFile(List<BusRecord> commonSchedule) throws IOException {
         List<BusRecord> poshList = commonSchedule.stream().filter(busRecord -> busRecord.getName().equals(POSH))
                 .collect(Collectors.toList());
         List<BusRecord> grottyList = commonSchedule.stream().filter(busRecord -> busRecord.getName().equals(GROTTY))
                 .collect(Collectors.toList());
-        FileWriter fw = new FileWriter(outputPath);
+        FileWriter fw = new FileWriter("./output.txt");
         PrintWriter printWriter = new PrintWriter(fw);
         for (BusRecord busRecord : poshList) {
             printWriter.println(busRecord.toString());

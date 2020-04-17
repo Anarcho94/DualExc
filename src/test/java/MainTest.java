@@ -14,7 +14,7 @@ public class MainTest {
 
     private static final String INPUT_PATH = "./testInputFile.txt";
     private static final String STANDARD_PATH = "./testStandardFile.txt";
-    private static final String OUTPUT_PATH = "./testOutputFile.txt";
+    private static final String OUTPUT_PATH = "./output.txt";
 
     @Before
     public void initTest() {
@@ -24,12 +24,12 @@ public class MainTest {
 
     @Test(expected = IOException.class)
     public void testWrongPath() throws IOException {
-        recordService.makeBusSchedule(".../wrongPath", "....");
+        recordService.makeBusSchedule(".../wrongPath");
     }
 
     @Test
     public void testOutputData() throws IOException {
-        recordService.makeBusSchedule(INPUT_PATH, OUTPUT_PATH);
+        recordService.makeBusSchedule(INPUT_PATH);
         List<String> standardData = fileService.fileToArrayList(STANDARD_PATH);
         List<String> outputData = fileService.fileToArrayList(OUTPUT_PATH);
         Assert.assertEquals(standardData, outputData);

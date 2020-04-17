@@ -9,7 +9,7 @@ public class DualExMain {
     public static void main(String[] args) {
         BusRecordService recordService = new BusRecordService();
         try {
-            recordService.makeBusSchedule("./testInputFile.txt", "./output.txt");
+            recordService.makeBusSchedule("./testInputFile.txt");
         } catch (IOException e) {
             System.out.println("Exception");
         }
